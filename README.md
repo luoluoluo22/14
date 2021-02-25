@@ -11,8 +11,6 @@
 
 ```
 Chatbot(clientId, secret [, serviceProvider])
-
-
 ```
 
 #### [](#参数说明)参数说明
@@ -29,8 +27,6 @@ Chatbot(clientId, secret [, serviceProvider])
 import com.chatopera.bot.sdk.Chatbot;
 ...
 Chatbot chatbot = new Chatbot(clientId, secret);
-
-
 ```
 
 ##### Python
@@ -38,8 +34,6 @@ Chatbot chatbot = new Chatbot(clientId, secret);
 ```
 from chatopera import Chatbot
 bot = Chatbot(clientId, secret)
-
-
 ```
 
 ##### PHP
@@ -52,8 +46,6 @@ bot = Chatbot(clientId, secret)
 include_once **DIR** . "/vendor/autoload.php";
 $chatbot = new Chatopera\SDK\Chatbot($appId, \$secret);
 
-
-
 ```
 
 ##### Go
@@ -64,8 +56,6 @@ import (
 )
 ...
 var chatbot = chatopera.Chatbot(clientId, secret)
-
-
 ```
 
 ### [](#发送请求)发送请求
@@ -76,8 +66,6 @@ var chatbot = chatopera.Chatbot(clientId, secret)
 
 ```
 result = chatbot.command(method, path [, body])
-
-
 ```
 
 > **提示：** result 返回在 Node.js 中使用`await`或`Promise`，参考[快速开始](https://docs.chatopera.com/products/chatbot-platform/integration/quick-get-start.html)；其它语言直接用 `=` 便可获取。
@@ -126,8 +114,6 @@ result = chatbot.command(method, path [, body])
 
 ```
 Chatbot#command("GET", "/")
-
-
 ```
 
 #### [](#result-json-object)result / JSON Object
@@ -147,8 +133,6 @@ Chatbot#command("GET", "/")
         }
     }
 }
-
-
 ```
 
 <table><thead><tr><th>key</th><th>type</th><th>description</th></tr></thead><tbody><tr><td><code>name</code></td><td>string</td><td>机器人名字。</td></tr><tr><td><code>fallback</code></td><td>string</td><td>兜底回复，当请求机器人对话时，没有得到来自多轮对话、知识库或意图识别回复时，回复此内容。</td></tr><tr><td><code>welcome</code></td><td>string</td><td>机器人问候语。</td></tr><tr><td><code>description</code></td><td>string</td><td>机器人描述。</td></tr><tr><td><code>primaryLanguage</code></td><td>string</td><td>机器人语言。</td></tr><tr><td><code>status</code></td><td>JSON Object</td><td>全局任务的执行状态，<code>reindex</code>代表知识库同步自定义词典的状态；<code>retrain</code>代表意图识别同步自定义词典的状态。</td></tr></tbody></table>
@@ -157,8 +141,6 @@ Chatbot#command("GET", "/")
 
 ```
 Chatbot#command("PUT", "/", body)
-
-
 ```
 
 #### [](#body-json-object)body / JSON Object
@@ -169,8 +151,6 @@ Chatbot#command("PUT", "/", body)
  "description": "我的超级能力是对话",
  "welcome": "你好，我是机器人小巴巴"
 }
-
-
 ```
 
 #### [](#result-json-object-1)result / JSON Object
@@ -184,16 +164,12 @@ Chatbot#command("PUT", "/", body)
   "description": "Performs Tasks or retrieves FAQ.",
   "welcome": "你好，我是机器人小巴巴"
 }
-
-
 ```
 
 ### [](#获取全局任务状态)获取全局任务状态
 
 ```
 Chatbot#command("GET", "/status")
-
-
 ```
 
 #### [](#result-json-object-2)result / JSON Object
@@ -207,8 +183,6 @@ Chatbot#command("GET", "/status")
    "retrain": 0
   }
 }
-
-
 ```
 
 [](#对话检索)对话检索
@@ -218,8 +192,6 @@ Chatbot#command("GET", "/status")
 
 ```
 Chatbot#command("POST", "/faq/query", body)
-
-
 ```
 
 #### [](#body-json-object-1)body / JSON Object
@@ -231,8 +203,6 @@ Chatbot#command("POST", "/faq/query", body)
 	"faqBestReplyThreshold": 0.5,
 	"faqSuggReplyThreshold": 0.1
 }
-
-
 ```
 
 #### [](#result-json-object-3)result/ JSON Object
@@ -272,8 +242,6 @@ Chatbot#command("POST", "/faq/query", body)
         }
     ]
 }
-
-
 ```
 
 ### [](#检索意图识别)检索意图识别
@@ -294,8 +262,6 @@ Chatbot#command("POST", "/faq/query", body)
 
 ```
 Chatbot#command("POST", "/clause/prover/session", body)
-
-
 ```
 
 #### [](#body-json-object-2)body / JSON Object
@@ -305,8 +271,6 @@ Chatbot#command("POST", "/clause/prover/session", body)
 	"uid": "{{userId}}",
 	"channel": "{{channelId}}"
 }
-
-
 ```
 
 <table><thead><tr><th>key</th><th>type</th><th>required</th><th>description</th></tr></thead><tbody><tr><td>userID</td><td>string</td><td>✔</td><td>用户标识，由字母和数字组成的字符串。开发者自定义，保证每个用户唯一</td></tr><tr><td>channelId</td><td>string</td><td>✔</td><td>用户来源的渠道标识，由字母和数字组成的字符串。由开发者自定义，保证每个渠道唯一</td></tr></tbody></table>
@@ -329,8 +293,6 @@ Chatbot#command("POST", "/clause/prover/session", body)
     },
     "error": null
 }
-
-
 ```
 
 _intent_name_: 意图名字
@@ -347,8 +309,6 @@ _ttl_: 该会话信息在多少秒后过期，每个会话默认是 1 小时的�
 
 ```
 Chatbot#command("POST", "/clause/prover/chat", body)
-
-
 ```
 
 #### [](#body-json-object-3)body / JSON Object
@@ -363,8 +323,6 @@ Chatbot#command("POST", "/clause/prover/chat", body)
 		"textMessage": "我想购买明天火车票"
 	}
 }
-
-
 ```
 
 <table><thead><tr><th>key</th><th>type</th><th>required</th><th>description</th></tr></thead><tbody><tr><td>userId</td><td>string</td><td>✔</td><td>用户唯一 ID，用户 ID 由业务系统传递或生成，保证每个用户用唯一字符串</td></tr><tr><td>sessionId</td><td>string</td><td>✔</td><td>使用创建会话接口创建</td></tr><tr><td>textMessage</td><td>string</td><td>✔</td><td>用户输入的对话文字</td></tr></tbody></table>
@@ -399,16 +357,12 @@ Chatbot#command("POST", "/clause/prover/chat", body)
     },
     "error": null
 }
-
-
 ```
 
 #### [](#查看会话详情)查看会话详情
 
 ```
 Chatbot#command("GET", "/clause/prover/session/{{sessionId}}")
-
-
 ```
 
 #### [](#result-json-object-6)result/ JSON Object
@@ -429,8 +383,6 @@ Chatbot#command("GET", "/clause/prover/session/{{sessionId}}")
     },
     "error": null
 }
-
-
 ```
 
 ### [](#检索多轮对话)检索多轮对话
@@ -439,8 +391,6 @@ Chatbot#command("GET", "/clause/prover/session/{{sessionId}}")
 
 ```
 Chatbot#command("POST", "/conversation/query", body)
-
-
 ```
 
 #### [](#body-json-object-4)body / JSON Object
@@ -452,8 +402,6 @@ Chatbot#command("POST", "/conversation/query", body)
     "faqBestReplyThreshold": 0.6,
     "faqSuggReplyThreshold": 0.35
 }
-
-
 ```
 
 <table><thead><tr><th>key</th><th>type</th><th>required</th><th>description</th></tr></thead><tbody><tr><td>userId</td><td>string</td><td>✔</td><td>用户唯一 ID，用户 ID 由业务系统传递或生成，保证每个用户用唯一字符串</td></tr><tr><td>textMessage</td><td>string</td><td>✔</td><td>用户输入的对话文字</td></tr><tr><td>faqBestReplyThreshold</td><td>number</td><td>✘</td><td>知识库最佳回复， 默认 0.8，知识库建议回复，知识库中置信度超过该值通过返回值<code>string</code>和<code>params</code>返回</td></tr><tr><td>faqSuggReplyThreshold</td><td>number</td><td>✘</td><td>知识库建议回复，默认 0.6，知识库中置信度超过该值的问答对通过返回值<code>faq</code>属性返回</td></tr></tbody></table>
@@ -491,8 +439,6 @@ Chatbot#command("POST", "/conversation/query", body)
         ]
     }
 }
-
-
 ```
 
 _state_: 业务字段，可以在多轮对话脚本中设置
@@ -530,8 +476,6 @@ _faq_: 知识库中匹配 textMessage 的相似度超过 **faqSuggReplyThreshold
 
 ```
 routeDirectReply#["TOPIC_NAME", "TOPIC_GAMBIT_ID" [,INHERIT_PARAMS]]
-
-
 ```
 
 _TOPIC_NAME_: [对话名称](https://docs.chatopera.com/products/chatbot-platform/conversation/index.html#%E6%9C%AF%E8%AF%AD)
@@ -546,8 +490,6 @@ _TOPIC_GAMBIT_ID_: [触发器名称](https://docs.chatopera.com/products/chatbot
 
 ```
 routeDirectReply#["class_001_pre", "__C1PRE_GAMBIT_003",true]
-
-
 ```
 
 <table><caption>【知识库或函数】路由多轮对话</caption><tbody><tr><td><img class="" src="https://docs.chatopera.com/images/products/platform/set-faq-route-conversion-reply.jpg"></td></tr></tbody></table>
@@ -561,8 +503,6 @@ routeDirectReply#["class_001_pre", "__C1PRE_GAMBIT_003",true]
 
 ```
 Chatbot#command("POST", "/clause/customdicts", body)
-
-
 ```
 
 #### [](#body-json-object-5)body / JSON Object
@@ -572,8 +512,6 @@ Chatbot#command("POST", "/clause/customdicts", body)
 	"name": "{{customDictName}}",
 	"type": "vocab"
 }
-
-
 ```
 
 <table><thead><tr><th>key</th><th>type</th><th>required</th><th>description</th></tr></thead><tbody><tr><td>name</td><td>string</td><td>✔</td><td>自定词典名称，使用<code>小写字母和数据</code>组成的字符串</td></tr></tbody></table>
@@ -591,16 +529,12 @@ Chatbot#command("POST", "/clause/customdicts", body)
         "updatedate": "2019-08-07 19:59:14"
     }
 }
-
-
 ```
 
 ### [](#获取自定义词典列表)获取自定义词典列表
 
 ```
 Chatbot#command("GET", "/clause/customdicts?limit={{limit}}&page={{page}}")
-
-
 ```
 
 #### [](#result-json-object-9)result/ JSON Object
@@ -621,16 +555,12 @@ Chatbot#command("GET", "/clause/customdicts?limit={{limit}}&page={{page}}")
         }
     ]
 }
-
-
 ```
 
 ### [](#更新自定义词典)更新自定义词典
 
 ```
 Chatbot#command("PUT", "/clause/customdicts/{{customDictName}}", body)
-
-
 ```
 
 #### [](#path)path
@@ -643,8 +573,6 @@ Chatbot#command("PUT", "/clause/customdicts/{{customDictName}}", body)
 {
     "description": "高级轿车品牌"
 }
-
-
 ```
 
 #### [](#result-json-object-10)result/ JSON Object
@@ -661,16 +589,12 @@ Chatbot#command("PUT", "/clause/customdicts/{{customDictName}}", body)
         "type": "vocab",
     }
 }
-
-
 ```
 
 ### [](#删除自定义词典)删除自定义词典
 
 ```
 Chatbot#command("DELETE", "/clause/customdicts/{{customDictName}}")
-
-
 ```
 
 #### [](#path-1)path
@@ -691,8 +615,6 @@ Chatbot#command("DELETE", "/clause/customdicts/{{customDictName}}")
         }
     }
 }
-
-
 ```
 
 [](#知识库管理)知识库管理
@@ -702,8 +624,6 @@ Chatbot#command("DELETE", "/clause/customdicts/{{customDictName}}")
 
 ```
 Chatbot#command("POST", "/faq/categories", body)
-
-
 ```
 
 #### [](#body-json-object-7)body / JSON Object
@@ -712,8 +632,6 @@ Chatbot#command("POST", "/faq/categories", body)
 {
 	"label": "{{categoryText}}"
 }
-
-
 ```
 
 #### [](#result-json-object-12)result/ JSON Object
@@ -741,16 +659,12 @@ Chatbot#command("POST", "/faq/categories", body)
         ]
     }
 }
-
-
 ```
 
 ### [](#获取知识库分类信息)获取知识库分类信息
 
 ```
 Chatbot#command("GET", "/faq/categories")
-
-
 ```
 
 #### [](#body-json-object-8)body / JSON Object
@@ -771,16 +685,12 @@ Chatbot#command("GET", "/faq/categories")
         }
     ]
 }
-
-
 ```
 
 ### [](#更新知识库分类)更新知识库分类
 
 ```
 Chatbot#command("", "/faq/categories", body)
-
-
 ```
 
 #### [](#body-json-object-9)body / JSON Object
@@ -790,8 +700,6 @@ Chatbot#command("", "/faq/categories", body)
 	"value": "{{categoryId}}",
 	"label": "新的名字"
 }
-
-
 ```
 
 #### [](#result-json-object-13)result/ JSON Object
@@ -812,16 +720,12 @@ Chatbot#command("", "/faq/categories", body)
         }
     ]
 }
-
-
 ```
 
 ### [](#删除知识库分类)删除知识库分类
 
 ```
 Chatbot#command("DELETE", "/faq/categories/{{categoryId}}")
-
-
 ```
 
 #### [](#path-2)path
@@ -840,16 +744,12 @@ Chatbot#command("DELETE", "/faq/categories/{{categoryId}}")
         }
     ]
 }
-
-
 ```
 
 ### [](#创建问答对)创建问答对
 
 ```
 Chatbot#command("post", "/faq/database", body)
-
-
 ```
 
 #### [](#body-json-object-10)body / JSON Object
@@ -875,8 +775,6 @@ Chatbot#command("post", "/faq/database", body)
   "二级分类名"
  ]
 }
-
-
 ```
 
 #### [](#result-json-object-15)result / JSON Object
@@ -889,16 +787,12 @@ Chatbot#command("post", "/faq/database", body)
   "replyLastUpdate": "{{replyLastUpdate}}"
  }
 }
-
-
 ```
 
 ### [](#更新知识库问答对)更新知识库问答对
 
 ```
 Chatbot#command("PUT", "/faq/database/{{docId}}", body)
-
-
 ```
 
 #### [](#path-3)path
@@ -925,8 +819,6 @@ Chatbot#command("PUT", "/faq/database/{{docId}}", body)
 	],
 	"enabled": true
 }
-
-
 ```
 
 #### [](#result-json-object-16)result / JSON Object
@@ -939,16 +831,12 @@ Chatbot#command("PUT", "/faq/database/{{docId}}", body)
         "replyLastUpdate": "{{replyLastUpdate}}"
     }
 }
-
-
 ```
 
 ### [](#获取问答对列表)获取问答对列表
 
 ```
 Chatbot#command("GET", "/faq/database?limit={{limit}}&page={{page}}&q={{q}}")
-
-
 ```
 
 #### [](#path-4)path
@@ -979,16 +867,12 @@ Chatbot#command("GET", "/faq/database?limit={{limit}}&page={{page}}&q={{q}}")
         "retrain": 0
     }
 }
-
-
 ```
 
 ### [](#创建问答对相似问)创建问答对相似问
 
 ```
 Chatbot#command("POST", "/faq/database/{{docId}}/extend", body)
-
-
 ```
 
 #### [](#path-5)path
@@ -1001,8 +885,6 @@ Chatbot#command("POST", "/faq/database/{{docId}}/extend", body)
 {
 	"post": "怎样支持微信支付?"
 }
-
-
 ```
 
 #### [](#result-json-object-18)result / JSON Object
@@ -1014,16 +896,12 @@ Chatbot#command("POST", "/faq/database/{{docId}}/extend", body)
         "id": "{{extendId}}"
     }
 }
-
-
 ```
 
 ### [](#获取问答对相似问列表)获取问答对相似问列表
 
 ```
 Chatbot#command("GET", "/faq/database/{{docId}}/extend")
-
-
 ```
 
 #### [](#path-6)path
@@ -1047,16 +925,12 @@ Chatbot#command("GET", "/faq/database/{{docId}}/extend")
     ],
     "rc": 0
 }
-
-
 ```
 
 ### [](#更新问答对相似问)更新问答对相似问
 
 ```
 Chatbot#command("PUT", "/faq/database/{{docId}}/extend/{{extendId}}", body)
-
-
 ```
 
 #### [](#path-7)path
@@ -1069,8 +943,6 @@ Chatbot#command("PUT", "/faq/database/{{docId}}/extend/{{extendId}}", body)
 {
 	"post": "怎样支持微信支付?"
 }
-
-
 ```
 
 #### [](#result-json-object-20)result / JSON Object
@@ -1082,16 +954,12 @@ Chatbot#command("PUT", "/faq/database/{{docId}}/extend/{{extendId}}", body)
         "id": "{{extendId}}"
     }
 }
-
-
 ```
 
 ### [](#删除问答对相似问)删除问答对相似问
 
 ```
 Chatbot#command("DELETE", "/faq/database/{{docId}}/extend/{{extendId}}")
-
-
 ```
 
 #### [](#path-8)path
@@ -1105,16 +973,12 @@ Chatbot#command("DELETE", "/faq/database/{{docId}}/extend/{{extendId}}")
     "rc": 0,
     "msg": "done"
 }
-
-
 ```
 
 ### [](#删除问答对)删除问答对
 
 ```
 Chatbot#command("DELETE", "/faq/database/{{docId}}")
-
-
 ```
 
 #### [](#result-json-object-22)result / JSON Object
@@ -1124,8 +988,6 @@ Chatbot#command("DELETE", "/faq/database/{{docId}}")
     "rc": 0,
     "msg": "done"
 }
-
-
 ```
 
 [](#语音识别)语音识别
@@ -1140,8 +1002,6 @@ Channels       : 1
 Sample Rate    : 16000
 Precision      : 16-bit
 Sample Encoding: 16-bit Signed Integer PCM
-
-
 ```
 
 下载[音频示例](https://docs.chatopera.com/images/products/platform/asr.sample.001.wav)。
@@ -1152,8 +1012,6 @@ Sample Encoding: 16-bit Signed Integer PCM
 
 ```
 Chatbot#command("POST", "/asr/recognize", body)
-
-
 ```
 
 #### [](#body-json-object-14)body / JSON Object
@@ -1164,8 +1022,6 @@ Chatbot#command("POST", "/asr/recognize", body)
 	"nbest": 5,
 	"pos": true
 }
-
-
 ```
 
 <table><thead><tr><th>key</th><th>type</th><th>required</th><th>description</th></tr></thead><tbody><tr><td>filepath</td><td>string</td><td>✔</td><td>语音文件绝对路径，或当前应用启动路径 (CWD) 的相对路径</td></tr><tr><td>nbest</td><td>int</td><td>✘</td><td>语音识别可返回多个结果，方便查询关键词，默认 5</td></tr><tr><td>pos</td><td>boolean</td><td>✘</td><td>返回值是否分词，默认 false</td></tr></tbody></table>
@@ -1193,8 +1049,6 @@ Chatbot#command("POST", "/asr/recognize", body)
         ]
     }
 }
-
-
 ```
 
 <table><thead><tr><th>key</th><th>type</th><th>description</th></tr></thead><tbody><tr><td><code>duration</code></td><td>int</td><td>语音文件时间长度，单位 毫秒，比如 6250 代表 6.25 秒</td></tr><tr><td><code>predicts</code></td><td>JSONArray</td><td>识别结果</td></tr><tr><td><code>text</code></td><td>string</td><td>识别得到的文本</td></tr><tr><td><code>confidence</code></td><td>double</td><td>置信度，[0-1]，值越大越有可能，<code>predicts</code> 按 <code>confidence</code> 降序</td></tr></tbody></table>
@@ -1203,8 +1057,6 @@ Chatbot#command("POST", "/asr/recognize", body)
 
 ```
 Chatbot#command("POST", "/asr/recognize", body)
-
-
 ```
 
 #### [](#body-json-object-15)body / JSON Object
@@ -1216,8 +1068,6 @@ Chatbot#command("POST", "/asr/recognize", body)
 	"nbest": 5,
 	"pos": true
 }
-
-
 ```
 
 <table><thead><tr><th>key</th><th>type</th><th>required</th><th>description</th></tr></thead><tbody><tr><td>type</td><td>string</td><td>✔</td><td>固定值 <code>base64</code></td></tr><tr><td>data</td><td>string</td><td>✔</td><td>语音文件使用 base 编码的字符串，并且必须以 <code>data:audio/wav;base64,</code>作为前缀，比如 <code>data:audio/wav;base64,xyz...</code></td></tr><tr><td>nbest</td><td>int</td><td>✘</td><td>语音识别可返回多个结果，方便查询关键词，默认 5</td></tr><tr><td>pos</td><td>boolean</td><td>✘</td><td>返回值是否分词，默认 false</td></tr></tbody></table>
@@ -1249,8 +1099,6 @@ Chatbot#command("POST", "/asr/recognize", body)
         ]
     }
 }
-
-
 ```
 
 <table><thead><tr><th>key</th><th>type</th><th>description</th></tr></thead><tbody><tr><td><code>duration</code></td><td>int</td><td>语音文件时间长度，单位 毫秒，比如 6250 代表 6.25 秒</td></tr><tr><td><code>predicts</code></td><td>JSONArray</td><td>识别结果</td></tr><tr><td><code>text</code></td><td>string</td><td>识别得到的文本</td></tr><tr><td><code>confidence</code></td><td>double</td><td>置信度，[0-1]，值越大越有可能，<code>predicts</code> 按 <code>confidence</code> 降序</td></tr></tbody></table>
@@ -1262,8 +1110,6 @@ Chatbot#command("POST", "/asr/recognize", body)
 
 ```
 Chatbot#command("GET", "/users")
-
-
 ```
 
 #### [](#path-9)path
@@ -1286,8 +1132,6 @@ Chatbot#command("GET", "/users")
         }
     ]
 }
-
-
 ```
 
 _userId_: 和机器人对话的用户标识
@@ -1300,8 +1144,6 @@ _created_: 第一次沟通时间
 
 ```
 Chatbot#command("POST", "/users/{{userId}}/mute")
-
-
 ```
 
 #### [](#path-10)path
@@ -1315,16 +1157,12 @@ Chatbot#command("POST", "/users/{{userId}}/mute")
     "rc": 0,
     "data": {}
 }
-
-
 ```
 
 ### [](#取消屏蔽)取消屏蔽
 
 ```
 Chatbot#command("POST", "/users/{{userId}}/unmute")
-
-
 ```
 
 #### [](#path-11)path
@@ -1338,16 +1176,12 @@ Chatbot#command("POST", "/users/{{userId}}/unmute")
     "rc": 0,
     "data": {}
 }
-
-
 ```
 
 ### [](#是否被屏蔽)是否被屏蔽
 
 ```
 Chatbot#command("POST", "/users/{{userId}}/ismute")
-
-
 ```
 
 #### [](#result-json-object-28)result / JSON Object
@@ -1359,8 +1193,6 @@ Chatbot#command("POST", "/users/{{userId}}/ismute")
         "mute": false
     }
 }
-
-
 ```
 
 `data.mute`返回 boolean 类型值。
@@ -1369,8 +1201,6 @@ Chatbot#command("POST", "/users/{{userId}}/ismute")
 
 ```
 Chatbot#command("GET", "/users/{{userId}}/profile")
-
-
 ```
 
 #### [](#path-12)path
@@ -1391,16 +1221,12 @@ Chatbot#command("GET", "/users/{{userId}}/profile")
         "mute": false
     }
 }
-
-
 ```
 
 ### [](#获取聊天历史)获取聊天历史
 
 ```
 Chatbot#command("GET", "/users/{{userId}}/chats?limit={{limit}}&page={{page}}")
-
-
 ```
 
 #### [](#path-13)path
@@ -1427,8 +1253,6 @@ Chatbot#command("GET", "/users/{{userId}}/chats?limit={{limit}}&page={{page}}")
         }
     ]
 }
-
-
 ```
 
 _total_: 该用户和机器人之间对话总数
