@@ -2,6 +2,8 @@
 
 [](#chatbot类)`Chatbot`类
 -----------------------
+## nodejs安装 
+`npm install @chatopera/sdk --save`
 
 ### [](#实例化)实例化
 
