@@ -1,4 +1,4 @@
-> 本文由 [简悦 SimpRead](http://ksria.com/simpread/) 转码， 原文地址 [docs.chatopera.com](https://docs.chatopera.com/products/chatbot-platform/integration/api.html)
+> 原文地址 [docs.chatopera.com](https://docs.chatopera.com/products/chatbot-platform/integration/api.html)
 
 [](#chatbot类)`Chatbot`类
 -----------------------
